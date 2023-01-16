@@ -6,4 +6,15 @@ public class Book {
     Book(String title, Author author){
         this.title = title;
     }
+    Book(String title){
+        this.title = title;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }
