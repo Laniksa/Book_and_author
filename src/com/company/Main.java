@@ -1,29 +1,35 @@
 package com.company;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static Author listAuthor[] = new Author[10];
+    public static final int maxAuthor = 10;
+    public static final int maxBook = 10;
+    public static int numberAuthor = 0;
+    public static int numberBook= 0;
+    public static Author listAuthor[] = new Author[maxAuthor];
+    public static Book listBook[] = new Book[maxBook];
 
 
     public static Author addAuthor(Scanner scan){
-        //String str;
         scan.nextLine();
         System.out.println("Введите имя автора:\n");
-        //String nameAuthor = scan.nextLine();
         Author.setName(scan.nextLine());
         System.out.println("Введите фамилию автора:\n");
-        //String surnameAuthor = scan.nextLine();
         Author.setSurname(scan.nextLine());
         System.out.println("Введите псевдоним автора:\n");
-        //String nickNameAuthor = scan.nextLine();
         Author.setNickname(scan.nextLine());
 
         return new Author (Author.getName(),Author.getSurname(),Author.getNickname());
     }
-    public static Author[] listAllAuthor(Author author){
-// тут будем лепить массив
-       return  listAuthor[];
+    public static void listAllAuthors(Author author){
+        listAuthor[numberAuthor] = author;
+        numberAuthor++;
+    }
+    public static void listAllBooks(Book book){
+        listBook[numberBook] = book;
+        numberBook++;
     }
 
     public static Book addBook(Scanner scan){
@@ -32,11 +38,13 @@ public class Main {
         String bookName = scan.nextLine();
         return new Book(bookName);
     }
+
     public static boolean menu (){
         Scanner scan = new Scanner(System.in);
 
         while(true){
-            String num = scan.nextLine();
+            //String numberMenu = scan.nextLine();
+            int num;
             System.out.println("Введите пункт меню:\n" +
                     "1. Добавить автора\n" +
                     "2. Добавить книгу\n" +
@@ -45,19 +53,44 @@ public class Main {
                     "5. Выход\n"
 
             );
+            try{
+               num = scan.nextInt();
+                switch (num){
+                    case 1:
+                        listAllAuthors(addAuthor(scan));
+                        break;
+                    case 2:
+                        listAllBooks(addBook(scan));
+                        break;
+                    case 3:
+                        for(int i = 0; i < numberAuthor-1; i++){
+                            System.out.println(listAuthor[i]);
+                        }
+                        break;
+                    case 4:
+                        for (int i = 0; i < numberBook-1; i++){
+                            System.out.println(listBook[i]);
+                        }
+                        break;
+                    case 5:
+                        System.out.println("Программа завершена!");
+                        return false;
+                    default:
+                        System.out.println("Введите пункт меню от 1 до 5");
 
-            switch (num){
-                case 1:
-                    addAuthor((Scanner scan));
-                    break;
-
+                }
+            }catch(InputMismatchException e){
+                System.out.println("Введите пункт меню в числовом виде!");
             }
+
+
+
         }
     }
 
 
 
     public static void main(String[] args) {
-	// write your code here
+	    menu();
     }
 }
