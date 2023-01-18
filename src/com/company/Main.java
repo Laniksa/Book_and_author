@@ -9,8 +9,10 @@ public class Main {
     public static final int maxBook = 10;
     public static int numberAuthor = 0;
     public static int numberBook= 0;
+    public static int numberAuthorBook= 0;
     public static Author listAuthor[] = new Author[maxAuthor];
     public static Book listBook[] = new Book[maxBook];
+    public static Book listAuthorBook[] = new Book[maxBook];
 
 
     public static Author addAuthor(Scanner scan){
@@ -21,8 +23,10 @@ public class Main {
         String surname = scan.nextLine();
         System.out.println("Введите псевдоним автора: ");
         String nickname = scan.nextLine();
+        System.out.println("Введите книги написанные автором: ");
+        menuAuthorBooks();
 
-        return new Author (name,surname,nickname);
+        return new Author (name,surname,nickname,listAuthorBook);
     }
     public static void listAllAuthors(Author author){
         listAuthor[numberAuthor] = author;
@@ -31,6 +35,10 @@ public class Main {
     public static void listAllBooks(Book book){
         listBook[numberBook] = book;
         numberBook++;
+    }
+    public static void listAllBookAuthor(Book book){
+        listAuthorBook[numberAuthorBook] = book;
+        numberAuthorBook++;
     }
 
     public static Book addBook(Scanner scan){
@@ -86,6 +94,37 @@ public class Main {
 
 
         }
+    }
+    public static boolean menuAuthorBooks(){
+        Scanner scan = new Scanner(System.in);
+        while (true){
+            int ch;
+            System.out.println("Выберите действие:\n" +
+                    "1 Добавить книгу\n"+
+                    "2 Выход");
+            try {
+                ch = scan.nextInt();
+                switch (ch){
+                    case 1:
+                        addTwoLibrary(addBook(scan));
+                        break;
+
+                    case 2:
+                        System.out.println("Ввод книг завершен");
+                        return false;
+                    default:
+                        System.out.println("Выберите пункт 1 или 2");
+                }
+            }catch(InputMismatchException e){
+                System.out.println("Введите пункт меню в числовом виде!");
+            }
+
+        }
+    }
+
+    public static void addTwoLibrary(Book book){
+        listAllBookAuthor(book);
+        listAllBooks(book);
     }
 
 
