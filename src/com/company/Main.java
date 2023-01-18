@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Введите книги написанные автором: ");
         menuAuthorBooks();
 
-        return new Author (name,surname,nickname,listAuthorBook);
+        return new Author (name,surname,nickname,Book.toString(listAuthorBook));
     }
     public static void listAllAuthors(Author author){
         listAuthor[numberAuthor] = author;
@@ -120,12 +120,19 @@ public class Main {
             }
 
         }
+
     }
 
     public static void addTwoLibrary(Book book){
         listAllBookAuthor(book);
         listAllBooks(book);
     }
+
+//    public static Book[] showAuthorBook(Book book){
+//        for(int i = 0; i < numberAuthorBook; i++){
+//            return Book.toString(listAuthorBook[i]);
+//        }
+//    }
 
 
 

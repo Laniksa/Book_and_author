@@ -10,6 +10,11 @@ public class Book {
         this.title = title;
     }
 
+    public static Book[] toString(Book[] listAuthorBook) {
+                for(int i = 0; i < Main.numberAuthorBook; i++){
+            return Book.toString(listAuthorBook[i]);
+        }
+    }
 
 
     public void setTitle(String title){
