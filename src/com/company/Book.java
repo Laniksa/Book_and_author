@@ -10,6 +10,8 @@ public class Book {
         this.title = title;
     }
 
+
+
     public void setTitle(String title){
         this.title = title;
     }
@@ -17,4 +19,9 @@ public class Book {
     public String getTitle() {
         return title;
     }
+    public static String toString(Book book) {
+
+        return "Название книги: " + book.getTitle() + "\n";
+    }
+
 }

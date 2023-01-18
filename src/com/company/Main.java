@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main {
     public static final int maxAuthor = 10;
@@ -14,14 +15,14 @@ public class Main {
 
     public static Author addAuthor(Scanner scan){
         scan.nextLine();
-        System.out.println("Введите имя автора:\n");
-        Author.setName(scan.nextLine());
-        System.out.println("Введите фамилию автора:\n");
-        Author.setSurname(scan.nextLine());
-        System.out.println("Введите псевдоним автора:\n");
-        Author.setNickname(scan.nextLine());
+        System.out.println("Введите имя автора: ");
+        String name = scan.nextLine();
+        System.out.println("Введите фамилию автора: ");
+        String surname = scan.nextLine();
+        System.out.println("Введите псевдоним автора: ");
+        String nickname = scan.nextLine();
 
-        return new Author (Author.getName(),Author.getSurname(),Author.getNickname());
+        return new Author (name,surname,nickname);
     }
     public static void listAllAuthors(Author author){
         listAuthor[numberAuthor] = author;
@@ -34,7 +35,7 @@ public class Main {
 
     public static Book addBook(Scanner scan){
         scan.nextLine();
-        System.out.println("Введите название книги: \n");
+        System.out.println("Введите название книги: ");
         String bookName = scan.nextLine();
         return new Book(bookName);
     }
@@ -43,7 +44,6 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         while(true){
-            //String numberMenu = scan.nextLine();
             int num;
             System.out.println("Введите пункт меню:\n" +
                     "1. Добавить автора\n" +
@@ -63,13 +63,13 @@ public class Main {
                         listAllBooks(addBook(scan));
                         break;
                     case 3:
-                        for(int i = 0; i < numberAuthor-1; i++){
-                            System.out.println(listAuthor[i]);
+                        for(int i = 0; i < numberAuthor; i++){
+                            System.out.println(Author.toString(listAuthor[i]));
                         }
                         break;
                     case 4:
-                        for (int i = 0; i < numberBook-1; i++){
-                            System.out.println(listBook[i]);
+                        for (int i = 0; i < numberBook; i++){
+                            System.out.println(Book.toString(listBook[i]));
                         }
                         break;
                     case 5:
